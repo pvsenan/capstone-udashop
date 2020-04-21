@@ -16,6 +16,13 @@ export async function getAllProducts(): Promise<Product[]> {
     return storeProducts;
 }
 
+export async function getOrders(
+    jwtToken: string
+): Promise<OrderItem[]> {
+    const userId = parseUserId(jwtToken);
+    return await postDataLayer.getOrderForCurrentUser(userId);
+}
+
 export async function createOrder(
     createOrderRequest: OrderRequest,
     jwtToken: string,paymentId: string

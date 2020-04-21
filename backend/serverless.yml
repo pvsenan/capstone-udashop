@@ -38,6 +38,27 @@ functions:
          authorizer: Auth
          reqValidatorName: RequestBodyValidator
 
+ GetOrders:
+    handler: src/lambda/http/getOrders.handler
+    events:
+      - http:
+          method: get
+          path: order
+          cors: true
+          authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ORDERS_TABLE}      
+      - Effect: "Allow"
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"  
+
  CreateOrder:
     handler: src/lambda/http/createOrder.handler
     events:
@@ -50,7 +71,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - dynamodb:PutItem
+          - dynamodb:GetItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ORDERS_TABLE}      
       - Effect: "Allow"
         Action:

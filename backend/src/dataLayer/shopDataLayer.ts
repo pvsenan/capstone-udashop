@@ -10,7 +10,7 @@ export class PostsDataLayer {
 	public constructor(
 		private readonly docClient: DocumentClient = new XAWS.DynamoDB.DocumentClient(),
 		private readonly ordersTable = process.env.ORDERS_TABLE,
-		private readonly orderIdIndex = process.env.ORDERID_INDEX,
+		private readonly orderIndex = process.env.ORDER_INDEX,
 	) {}
 
 	public async getOrderForCurrentUser(userId: string): Promise<OrderItem[]> {
@@ -21,7 +21,7 @@ export class PostsDataLayer {
 		const result = await this.docClient
 			.query({
 				TableName: this.ordersTable,
-				IndexName: this.orderIdIndex,
+				IndexName: this.orderIndex,
 				KeyConditionExpression:'userId = :userId',
                 ExpressionAttributeValues: {
 					':userId' : userId
@@ -64,7 +64,8 @@ export class PostsDataLayer {
 		.promise();
 		const item = result.Items[0];
 		return item as OrderItem;
-    }
+	}
+	
 
 
  /*   public async updatePost(
