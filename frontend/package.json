@@ -1,0 +1,54 @@
+{
+  "name": "Udashop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "watch": "npm-watch",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.0.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@material-ui/core": "^4.9.11",
+    "axios": "^0.19.2",
+    "express": "^4.16.4",
+    "highlight.js": "^9.15.6",
+    "morgan": "^1.9.1",
+    "npm-watch": "^0.6.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.4.0",
+    "reactstrap": "^8.0.0",
+    "semantic-ui-react": "^0.88.2"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,jsx"
+    }
+  },
+  "devDependencies": {},
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
