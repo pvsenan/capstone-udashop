@@ -35,7 +35,6 @@ functions:
          method: get
          path: products
          cors: true
-         authorizer: Auth
          reqValidatorName: RequestBodyValidator
 
  GetOrders:
@@ -84,7 +83,7 @@ functions:
     events:
       - http:
           method: post
-          path: payment/{userId}
+          path: payment
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
