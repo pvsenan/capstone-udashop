@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "8697767a-4bbd-4374-814a-3fc7b5e125c9",
+		"name": "capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "PaymnetId",
+						"value": "f06aee54-e3fc-41b8-8d6e-2133406493d4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\":\"1234566777\",\n\t\"items\":[\n\t\t{ \n\t\t\t\"sku\": \"798563254\",\n\t\t\t\"name\": \"Mjölk\",\n\t\t\t\"quantity\": \"2\",\n\t\t\t\"price\":20\n\t\t\n\t\t}\n\t\t\n\t\t],\n\t\"total\":40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/order",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrder",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/order",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProducts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{authToken}}",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/products",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateOrderId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/orderId",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"orderId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePayment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\":\"dsdas-12-das-3234123\",\n\t\"orderAmount\":524\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/payment",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
