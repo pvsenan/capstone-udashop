@@ -37,8 +37,9 @@ export const Auth0Provider = ({
 
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
-        const token = await auth0FromHook.getTokenSilently()
-        setToken(token)
+        const token = await auth0FromHook.getIdTokenClaims()
+        console.log(`Bearer ${token.__raw}`)
+        setToken(token.__raw)
         setUser(user);
 
       }

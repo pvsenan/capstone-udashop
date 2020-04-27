@@ -19,7 +19,7 @@ export default class CartItem extends Component {
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
           <strong>
-            <span className="d-lg-none">price :</span> ${price}
+            <span className="d-lg-none">price :</span> SEK {price}
           </strong>
         </div>
         <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">

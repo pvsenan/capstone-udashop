@@ -17,11 +17,13 @@ import "./App.css";
 import initFontAwesome from "./utils/initFontAwesome";
 import Details from "./components/Details";
 import Cart from './components/Cart'
+import Orders from "./components/Orders";
+import OrderConfirmation from "./components/OrderConfirmation";
 initFontAwesome();
 
 const App = () => {
-  const { loading, isAuthenticated } = useAuth0();
-
+  const { loading, isAuthenticated, token } = useAuth0();
+  
   if (loading) {
     return <Loading />;
   }
@@ -35,6 +37,8 @@ const App = () => {
             <Route path="/" exact component={Home}/>
             <Route path="/details" component={Details}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/orders" component={()=><Orders value={token}/>} />
+            <Route path="/confirm" component={OrderConfirmation}/>
             <PrivateRoute path="/profile" component={Profile} />
           </Switch>
         </Container>

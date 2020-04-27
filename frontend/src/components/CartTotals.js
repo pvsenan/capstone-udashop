@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
-export default class CartTotals extends Component {
-  render() {
+import {useAuth0} from '../react-auth0-spa'
+import { useHistory } from 'react-router-dom';
+
+
+const CartTotals = ({value}) => {
     const {
       cartTotalAmount,
       cart,
-      clearCart
-    } = this.props.value;
-    const { history } = this.props;
+      clearCart,
+      pay,
+      completedOrder
+    } = value;
     const emptyCart = cart.length === 0 ? true : false;
+    const { token } = useAuth0()
+    let history = useHistory()
+
     return (
       <React.Fragment>
         {!emptyCart && (
@@ -31,7 +38,12 @@ export default class CartTotals extends Component {
                   <span className="text-title"> total :</span>{" "}
                   <strong>SEK {cartTotalAmount} </strong>
                 </h5>
-                <div><Button color="success">Pay</Button></div>
+                <div><Button color="success" onClick={ async ()=>{
+                  const result = await pay(token)
+                  if(result)
+                   {history.push("/confirm")}
+                }
+                  } >Pay</Button></div>
               </div>
             </div>
           </div>
@@ -39,4 +51,5 @@ export default class CartTotals extends Component {
       </React.Fragment>
     );
   }
-}
+
+export default CartTotals

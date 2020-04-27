@@ -22,7 +22,7 @@ import { useAuth0 } from "../react-auth0-spa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout, token } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
 
   const logoutWithRedirect = () =>
@@ -57,6 +57,17 @@ const NavBar = () => {
                   activeClassName="router-link-exact-active"
                 >
                   Cart
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/orders"
+                  exact
+                  activeClassName="router-link-exact-active"
+                  disabled={isAuthenticated?false:true}
+                >
+                  My Orders
                 </NavLink>
               </NavItem>
             </Nav>
