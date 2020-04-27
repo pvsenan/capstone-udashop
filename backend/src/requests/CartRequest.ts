@@ -1,7 +1,7 @@
 
 export interface CartRequest {
-  sku: string,
-  quantity: string,
+  id: string,
+  count: string,
   name: string,
   price: number
 }
