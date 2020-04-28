@@ -49,6 +49,49 @@
 			"response": []
 		},
 		{
+			"name": "Delete Order",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{authToken}}"
+					},
+					{
+						"key": "PaymnetId",
+						"type": "text",
+						"value": "f06aee54-e3fc-41b8-8d6e-2133406493d4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\":\"1234566777\",\n\t\"items\":[\n\t\t{ \n\t\t\t\"sku\": \"798563254\",\n\t\t\t\"name\": \"Mjölk\",\n\t\t\t\"quantity\": \"2\",\n\t\t\t\"price\":20\n\t\t\n\t\t}\n\t\t\n\t\t],\n\t\"total\":40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/order",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GetOrder",
 			"request": {
 				"method": "GET",
