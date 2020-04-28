@@ -8,7 +8,7 @@ export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
 export const Auth0Provider = ({
   children,
-  onRedirectCallback = "http://localhost:3000/",
+  onRedirectCallback = "http://localhost:3000",
   ...initOptions
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();

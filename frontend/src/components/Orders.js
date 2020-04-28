@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios'
 import {apiEndpoint} from '../config'
 import Title from "./Title";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default class Orders extends Component {
@@ -11,13 +12,27 @@ export default class Orders extends Component {
   async componentDidMount(){
     const token = this.props.value
     const userToken = `Bearer ${token}`
-    console.log(userToken)
+    await this.fetchOrders(userToken)
+  }
+
+  async fetchOrders(userToken){
     const result =  await axios.get(`${apiEndpoint}/order`,{
       headers: {
           'Authorization': `${userToken}`
         }})
 
     this.setState(() => ({ orders:result.data.item }))
+  }
+
+  async deleteOrder(orderId){
+    const token = this.props.value
+    const userToken = `Bearer ${token}`
+    await axios.delete(`${apiEndpoint}/order/${orderId}`,{
+      headers: {
+          'Authorization': `${userToken}`,
+        },})
+     
+    await this.fetchOrders(userToken);
   }
   
   render() {
@@ -36,6 +51,9 @@ export default class Orders extends Component {
          <div className="col-md border">
            Status
           </div>
+          <div className="col-md border">
+           Delete Order
+          </div>          
         </div>
         
         {
@@ -50,6 +68,9 @@ export default class Orders extends Component {
                   </div>
                <div className="col-md border">
                  Pending
+                </div>
+                <div className="col-md border align-center">
+                 <button onClick={()=>this.deleteOrder(item.orderId)}>Delete</button>
                 </div>
               </div>
 
