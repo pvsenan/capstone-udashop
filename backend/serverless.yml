@@ -77,7 +77,27 @@ functions:
           - "xray:PutTraceSegments"
           - "xray:PutTelemetryRecords"
         Resource:
-          - "*"         
+          - "*"    
+ DeleteOrder:
+    handler: src/lambda/http/deleteOrder.handler
+    events:
+      - http:
+          method: delete
+          path: order/{orderId}
+          cors: true
+          authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:DeleteItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ORDERS_TABLE}      
+      - Effect: "Allow"
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"                  
  DoPayment:
     handler: src/lambda/http/doPayment.handler
     events:

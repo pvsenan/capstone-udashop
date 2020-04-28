@@ -2,6 +2,7 @@ import * as AWS from 'aws-sdk';
 import { DocumentClient, DeleteItemInput } from 'aws-sdk/clients/dynamodb';
 import { createLogger } from '../utils/logger'
 import { OrderItem } from '../models/OrderItem';
+import { AWSError } from 'aws-sdk';
 const AWSXRay = require('aws-xray-sdk');
 const XAWS = AWSXRay.captureAWS(AWS);
 
@@ -46,4 +47,25 @@ export class PostsDataLayer {
 		
 		return OrderItem;
 	  }
+
+	  public async deleteOrder(orderId: string, userId: string): Promise<void> {
+		const logger = createLogger('delete-order-logger')
+		logger.info('Deleting Order orderId = ' +orderId+ 'userId = ' + userId)
+		await this.docClient
+			.delete({
+				TableName: this.ordersTable,
+				Key: {
+					'userId':userId,
+					'orderId':orderId
+				}
+			},function (err: AWSError, data: AWS.DynamoDB.DocumentClient.DeleteItemOutput) {
+				if (err) {
+					console.log('FAIL:  Error deleting item from dynamodb - ' + err);
+				} else {
+					console.log("DEBUG:  deleteItem worked. ");
+					console.log(data);
+				}
+			})
+			.promise();
+	}	  
 }

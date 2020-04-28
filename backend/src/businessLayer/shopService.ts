@@ -39,6 +39,14 @@ export async function createOrder(
     });
 }
 
+export async function deleteOrder(orderId: string,
+    jwtToken: string
+): Promise<void> {
+    const userId = parseUserId(jwtToken);
+
+    return await postDataLayer.deleteOrder(orderId,userId);
+}
+
 export async function generateOrderId(
     jwtToken: string
 ): Promise<string> {
